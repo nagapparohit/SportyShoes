@@ -32,12 +32,12 @@
                 <beans:prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</beans:prop>
                 <beans:prop key="hibernate.show_sql">true</beans:prop>
                 <beans:prop key="connection.driver_class">org.postgresql.Driver</beans:prop>
-                <beans:prop key="connection.url">jdbc:postgresql://localhost:58623/testdb</beans:prop>
+                <beans:prop key="connection.url">jdbc:postgresql://localhost:5432/testdb</beans:prop>
                 <beans:prop key="connection.username">postgres</beans:prop>
-                <beans:prop key="connection.password">a</beans:prop>
+                <beans:prop key="connection.password">postgres</beans:prop>
                 <beans:prop key="connection.pool_size">1</beans:prop>
         		<beans:prop key="dialect">org.hibernate.dialect.PostgreSQLDialect</beans:prop>   
-				<beans:prop key="hbm2ddl.auto">validate</beans:prop>
+				<beans:prop key="hbm2ddl.auto">create</beans:prop>
 				<!-- each session run in separate thread -->
 				<beans:prop key="current_session_context_class">thread</beans:prop>
                	<beans:prop key="hibernate.id.new_generator_mappings">false</beans:prop>

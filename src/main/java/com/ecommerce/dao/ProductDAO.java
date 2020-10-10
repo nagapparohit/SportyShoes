@@ -2,6 +2,8 @@ package com.ecommerce.dao;
 
 import java.util.List;
 
+import org.hibernate.Transaction;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Query;
@@ -18,6 +20,10 @@ public class ProductDAO {
 
 	@Autowired
     private SessionFactory sessionFactory;
+	
+	private Session session;
+	
+	private Transaction txn;
 
 	@SuppressWarnings("unchecked")
 	public Product getProductById(long id) {
@@ -71,8 +77,12 @@ public class ProductDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Product> getAllProducts() {
-		List<Product> list = this.sessionFactory.getCurrentSession().createQuery("from Product order by name").list(); 
-
+		//List<Product> list = this.sessionFactory.getCurrentSession().createQuery("from Product order by name").list(); 
+		session = this.sessionFactory.getCurrentSession();
+		txn = session.beginTransaction();
+		List<Product> list = session.createQuery("from Product order by name").list();
+		txn.commit();
+		System.out.println("inside get all product");
 		return list;
 	}
 

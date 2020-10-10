@@ -12,27 +12,34 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;  
- 
+import javax.persistence.Table;
 
 @Entity
-@Table(name= "category")   
-public class Category { 
+@Table(name = "category")
+public class Category {
 
-
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private long ID;
-	
+
 	@Column(name = "name")
 	private String name;
-	
-	
-	public long getID() {return this.ID; }
-	public String getName() { return this.name;}
-	
-	public void setID(long id) { this.ID = id;}
-	public void setName(String value) { this.name = value;}
-	
+
+	public long getID() {
+		return this.ID;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setID(long id) {
+		this.ID = id;
+	}
+
+	public void setName(String value) {
+		this.name = value;
+	}
+
 }

@@ -16,12 +16,19 @@
         </repository>
     </repositories>
    <properties>
+   	<postgres-driver-version>9.1-901-1.jdbc4</postgres-driver-version>
     <org.springframework.version>5.1.6.RELEASE</org.springframework.version>
     <spring.security.version>3.2.3.RELEASE</spring.security.version>
   </properties>
  
  
   <dependencies>
+  <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgres-driver-version}</version>
+		</dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -134,12 +141,12 @@
       <artifactId>commons-dbcp</artifactId>
       <version>1.4</version>
     </dependency>
-         
+         <!-- 
    <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
         <version>5.1.9</version>
-    </dependency>
+    </dependency> -->
  
 	<dependency>
       <groupId>javax.transaction</groupId>

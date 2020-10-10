@@ -6,5 +6,19 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.id.new_generator_mappings">false</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+		<property name="connection.url">jdbc:postgresql://localhost:58623/testdb</property>
+		<property name="connection.username">postgres</property>
+		<property name="connection.password">a</property>
+
+		<property name="connection.pool_size">1</property>
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		
+		<property name="hbm2ddl.auto">validate</property>
+		<!-- each session run in separate thread -->
+		<property name="current_session_context_class">thread</property>
+		
+		<property name="show_sql">true</property>
+		
     </session-factory>
 </hibernate-configuration>

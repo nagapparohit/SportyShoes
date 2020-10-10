@@ -11,29 +11,15 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
     <context:annotation-config />
     <context:component-scan base-package="com.ecommerce" />
-    <beans:bean id="jspViewResolver"
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <beans:property name="viewClass"
-            value="org.springframework.web.servlet.view.JstlView"></beans:property>
-        <beans:property name="prefix" value="/WEB-INF/view/"></beans:property>
-        <beans:property name="suffix" value=".jsp"></beans:property>
-    </beans:bean>
-    <beans:bean id="messageSource"
-        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <beans:property name="basename" value="classpath:messages"></beans:property>
-        <beans:property name="defaultEncoding" value="UTF-8"></beans:property>
-    </beans:bean>
-    <beans:bean id="propertyConfigurer"
-        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <beans:property name="location" value="/WEB-INF/jdbc.properties"></beans:property>
-    </beans:bean>
+    
     <beans:bean id="dataSource"
-        class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
          <beans:property name="driverClassName" value="${jdbc.driverClassName}"></beans:property>
          <beans:property name="url" value="${jdbc.databaseurl}"></beans:property>
           <beans:property name="username" value="${jdbc.username}"></beans:property>
           <beans:property name="password" value="${jdbc.password}"></beans:property>
     </beans:bean>
+    
     <beans:bean id="sessionFactory"
         class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <beans:property name="dataSource" ref="dataSource"></beans:property>
@@ -41,16 +27,48 @@
         <beans:property name="configLocation">
             <beans:value>classpath:hibernate.cfg.xml</beans:value>
         </beans:property>
-        <beans:property name="hibernateProperties">
+      	<beans:property name="hibernateProperties">
             <beans:props>
-                <beans:prop key="hibernate.dialect">${jdbc.dialect}</beans:prop>
+                <beans:prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</beans:prop>
                 <beans:prop key="hibernate.show_sql">true</beans:prop>
+                <beans:prop key="connection.driver_class">org.postgresql.Driver</beans:prop>
+                <beans:prop key="connection.url">jdbc:postgresql://localhost:58623/testdb</beans:prop>
+                <beans:prop key="connection.username">postgres</beans:prop>
+                <beans:prop key="connection.password">a</beans:prop>
+                <beans:prop key="connection.pool_size">1</beans:prop>
+        		<beans:prop key="dialect">org.hibernate.dialect.PostgreSQLDialect</beans:prop>   
+				<beans:prop key="hbm2ddl.auto">validate</beans:prop>
+				<!-- each session run in separate thread -->
+				<beans:prop key="current_session_context_class">thread</beans:prop>
+               	<beans:prop key="hibernate.id.new_generator_mappings">false</beans:prop>
+               	<beans:prop key="show_sql">true</beans:prop>
             </beans:props>
         </beans:property>
     </beans:bean>
     <tx:annotation-driven />
+    
     <beans:bean id="transactionManager"
         class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <beans:property name="sessionFactory" ref="sessionFactory"></beans:property>
     </beans:bean>
+    
+    <beans:bean id="jspViewResolver"
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <beans:property name="viewClass"
+            value="org.springframework.web.servlet.view.JstlView"></beans:property>
+        <beans:property name="prefix" value="/WEB-INF/view/"></beans:property>
+        <beans:property name="suffix" value=".jsp"></beans:property>
+    </beans:bean>
+    
+    <beans:bean id="messageSource"
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <beans:property name="basename" value="classpath:messages"></beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"></beans:property>
+    </beans:bean>
+    
+    <beans:bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <beans:property name="location" value="/WEB-INF/jdbc.properties"></beans:property>
+    </beans:bean>
+    
 </beans:beans>

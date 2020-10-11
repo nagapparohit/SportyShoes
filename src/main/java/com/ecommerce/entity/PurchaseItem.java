@@ -7,22 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;  
-
+import javax.persistence.Table;
 
 @Entity
-@Table(name= "purchase_items")   
-public class PurchaseItem { 
+@Table(name = "purchase_items")
+public class PurchaseItem {
 
-
-	@Id 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private long ID;
-	
+
 	@Column(name = "purchase_id")
 	private long purchaseId;
-	
+
 	@Column(name = "product_id")
 	private long productId;
 
@@ -38,23 +36,60 @@ public class PurchaseItem {
 	@Column(name = "price")
 	private BigDecimal price;
 
-	
-	public long getID() {return this.ID; }
-	public long getPurchaseId() { return this.purchaseId;}
-	public long getProductId() { return this.productId;}
-	public long getUserId() { return this.userId;}
-	public BigDecimal getRate() { return this.rate;}	
-	public int getQty() { return this.qty;}	
-	public BigDecimal getPrice() { return this.price;}
-	
-	public void setID(long id) { this.ID = id;}
-	public void setPurchaseId(long value) { this.purchaseId = value;}
-	public void setProductId(long value) { this.productId = value;}
-	public void setUserId(long value) { this.userId = value;}
-	public void setRate(BigDecimal value) { this.rate = value;}
-	public void setQty(int value) { this.qty= value;}
-	public void setPrice(BigDecimal value) { this.price= value;}
-	
-	
+	public long getID() {
+		return this.ID;
+	}
+
+	public long getPurchaseId() {
+		return this.purchaseId;
+	}
+
+	public long getProductId() {
+		return this.productId;
+	}
+
+	public long getUserId() {
+		return this.userId;
+	}
+
+	public BigDecimal getRate() {
+		return this.rate;
+	}
+
+	public int getQty() {
+		return this.qty;
+	}
+
+	public BigDecimal getPrice() {
+		return this.price;
+	}
+
+	public void setID(long id) {
+		this.ID = id;
+	}
+
+	public void setPurchaseId(long value) {
+		this.purchaseId = value;
+	}
+
+	public void setProductId(long value) {
+		this.productId = value;
+	}
+
+	public void setUserId(long value) {
+		this.userId = value;
+	}
+
+	public void setRate(BigDecimal value) {
+		this.rate = value;
+	}
+
+	public void setQty(int value) {
+		this.qty = value;
+	}
+
+	public void setPrice(BigDecimal value) {
+		this.price = value;
+	}
 
 }

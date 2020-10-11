@@ -50,7 +50,12 @@ public class UserDAO {
 	@SuppressWarnings("unchecked")
 	public User getUserById(long id) {
 		String strId = String.valueOf(id);
-		List<User> list = this.sessionFactory.getCurrentSession().createQuery("from User where id=" + strId).list();
+		//List<User> list = this.sessionFactory.getCurrentSession().createQuery("from User where id=" + strId).list();
+		
+		session = this.sessionFactory.getCurrentSession();
+		txn = session.beginTransaction();
+		List<User> list = session.createQuery("from User where id=" + strId).list();
+		txn.commit();
 		if (list.size() > 0)
 			return (User) list.get(0);
 		else

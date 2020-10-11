@@ -44,9 +44,14 @@ public class AdminDAO {
 	
 	@SuppressWarnings("unchecked")
 	public Admin getAdminById(long id) {
-		List<Admin> list = this.sessionFactory.getCurrentSession().createQuery("from Admin where ID=:admin_id")
-				.setParameter("admin_id", id)
-				.list();
+		//List<Admin> list = this.sessionFactory.getCurrentSession().createQuery("from Admin where ID=:admin_id").setParameter("admin_id", id).list();
+		session = this.sessionFactory.getCurrentSession();
+		txn = session.beginTransaction();
+		
+		Query query = session.createQuery("from Admin where ID=:admin_id");
+		query.setParameter("admin_id", id);
+		List<Admin> list = query.list();
+		txn.commit();
 		if (list.size() > 0)
 			return (Admin) list.get(0);
 		else
@@ -59,12 +64,15 @@ public class AdminDAO {
 	public void updatePwd(Admin admin) {
 		
 		String sql = "update Admin set admin_pwd=:admin_pwd where ID=:id";
-		Query query = this.sessionFactory.getCurrentSession().createQuery(sql);
+		//Query query = this.sessionFactory.getCurrentSession().createQuery(sql);
+		
+		session = this.sessionFactory.getCurrentSession();
+		txn = session.beginTransaction();
+		Query query = session.createQuery(sql);
 		query.setParameter("admin_pwd", admin.getAdminPwd());
 		query.setParameter("id", admin.getID());
-		
 		query.executeUpdate();
-		
+		txn.commit();
 	}
 
 	

@@ -3,6 +3,7 @@ package com.ecommerce.dao;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.Session;
 import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,22 @@ public class AdminDAO {
 
 	@Autowired
     private SessionFactory sessionFactory;
-
+	
+	private Session session;
+	
+	private Transaction txn;
+	
 	@SuppressWarnings("unchecked")
 	public Admin authenticate(String adminId, String pwd) {
-		List<Admin> list = this.sessionFactory.getCurrentSession().createQuery("from Admin where admin_id=:admin_id and admin_pwd=:admin_pwd")
-				.setParameter("admin_id", adminId)
-				.setParameter("admin_pwd", pwd)
-				.list();
+		//List<Admin> list = this.sessionFactory.getCurrentSession().createQuery("from Admin where admin_id=:admin_id and admin_pwd=:admin_pwd").setParameter("admin_id", adminId).setParameter("admin_pwd", pwd).list();
+		
+		session = this.sessionFactory.getCurrentSession();
+		txn = session.beginTransaction();
+		Query query = session.createQuery("from Admin where admin_id=:admin_id and admin_pwd=:admin_pwd");
+		query.setParameter("admin_id", adminId);
+		query.setParameter("admin_pwd", pwd);
+		List<Admin> list = query.list();
+		txn.commit();
 		if (list.size() > 0)
 			return (Admin) list.get(0);
 		else

@@ -14,7 +14,7 @@
 		<property name="connection.pool_size">1</property>
 		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		
-		<property name="hbm2ddl.auto">create</property>
+		<property name="hbm2ddl.auto">validate</property>
 		<!-- each session run in separate thread -->
 		<property name="current_session_context_class">thread</property>
 		

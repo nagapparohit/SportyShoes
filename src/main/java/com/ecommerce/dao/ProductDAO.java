@@ -28,7 +28,11 @@ public class ProductDAO {
 	@SuppressWarnings("unchecked")
 	public Product getProductById(long id) {
 		String strId = String.valueOf(id);
-		List<Product> list = this.sessionFactory.getCurrentSession().createQuery("from Product where id=" + strId).list();
+		//List<Product> list = this.sessionFactory.getCurrentSession().createQuery("from Product where id=" + strId).list();
+		session = this.sessionFactory.getCurrentSession();
+		txn = session.beginTransaction();
+		List<Product> list = session.createQuery("from Product where id=" + strId).list();
+		txn.commit();
 		if (list.size() > 0)
 			return (Product) list.get(0);
 		else
@@ -40,18 +44,28 @@ public class ProductDAO {
 	@SuppressWarnings("unchecked")
 	public void updateProduct(Product product) {
 		String sql = "";
-		if (product.getID() == 0)
-				this.sessionFactory.getCurrentSession().save(product);
-		else if (product.getID() > 0) {
+		if (product.getID() == 0) {
+				//this.sessionFactory.getCurrentSession().save(product);
+				session = this.sessionFactory.getCurrentSession();
+				txn = session.beginTransaction();
+				session.save(product);
+				txn.commit();
+		}else if (product.getID() > 0) {
 			sql = "update Product set name=:name, price=:price, category_id=:category_id where " +
 					" ID=:id";
-			Query query = this.sessionFactory.getCurrentSession().createQuery(sql);
+			//Query query = this.sessionFactory.getCurrentSession().createQuery(sql);
+			session = this.sessionFactory.getCurrentSession();
+			txn = session.beginTransaction();
+			Query query = session.createQuery(sql);
 			query.setParameter("name", product.getName());
 			query.setParameter("price", product.getPrice());
 			query.setParameter("category_id", product.getCategoryId());
 			query.setParameter("id", product.getID());
 			
 			query.executeUpdate();
+			
+			txn.commit();
+			
 		}
 		
 	}
@@ -64,15 +78,22 @@ public class ProductDAO {
 		
 		String sql = "";
 		sql = "delete from PurchaseItem where product_id=:id";
-		Query query = this.sessionFactory.getCurrentSession().createQuery(sql);
+		//Query query = this.sessionFactory.getCurrentSession().createQuery(sql);
+		session = this.sessionFactory.getCurrentSession();
+		txn = session.beginTransaction();
+		Query query = session.createQuery(sql);
 		query.setParameter("id", id);
-
+		txn.commit();
+		
 		sql = "delete from Product where ID=:id";
-		query = this.sessionFactory.getCurrentSession().createQuery(sql);
+		//query = this.sessionFactory.getCurrentSession().createQuery(sql);
+		session = this.sessionFactory.getCurrentSession();
+		txn = session.beginTransaction();
+		query = session.createQuery(sql);
 		query.setParameter("id", id);
 		 
 		query.executeUpdate();
-		
+		txn.commit();
 	}
 
 	@SuppressWarnings("unchecked")

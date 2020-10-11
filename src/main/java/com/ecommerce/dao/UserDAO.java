@@ -76,7 +76,11 @@ public class UserDAO {
 		String sql = "";
 		if (user.getID() == 0) {
 			user.setDateAdded(Calendar.getInstance().getTime());
-			this.sessionFactory.getCurrentSession().save(user);
+			//this.sessionFactory.getCurrentSession().save(user);
+			session = this.sessionFactory.getCurrentSession();
+			txn = session.beginTransaction();
+			session.save(user);
+			txn.commit();
 		} else if (user.getID() > 0) {
 			sql = "update User set fname=:fname, lname=:lname, address=:address, age=:age, pwd=:pwd where " +
 					" ID=:id";

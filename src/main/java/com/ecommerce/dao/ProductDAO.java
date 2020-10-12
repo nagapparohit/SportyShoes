@@ -10,8 +10,6 @@ import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.ecommerce.entity.Product; 
 
 @Repository
@@ -41,7 +39,6 @@ public class ProductDAO {
 	}
 	
 	
-	@SuppressWarnings("unchecked")
 	public void updateProduct(Product product) {
 		String sql = "";
 		if (product.getID() == 0) {
@@ -71,7 +68,6 @@ public class ProductDAO {
 	}
 	
 
-	@SuppressWarnings("unchecked")
 	public void deleteProduct(long id) {
 		// delete all purchase items for this product before deleting this product
 		// Pending:Purchase total is not updated in the purchase total - it shows the old value
@@ -109,7 +105,6 @@ public class ProductDAO {
 
 
 	public List<Object> getAllProductsWithJoin() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

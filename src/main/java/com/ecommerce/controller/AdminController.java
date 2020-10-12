@@ -8,17 +8,23 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
- 
-import com.ecommerce.entity.*;
-import com.ecommerce.service.*;
+
+import com.ecommerce.entity.Admin;
+import com.ecommerce.entity.Category;
+import com.ecommerce.entity.Product;
+import com.ecommerce.entity.Purchase;
+import com.ecommerce.entity.PurchaseItem;
+import com.ecommerce.entity.User;
+import com.ecommerce.service.AdminService;
+import com.ecommerce.service.CategoryService;
+import com.ecommerce.service.ProductService;
+import com.ecommerce.service.PurchaseItemService;
+import com.ecommerce.service.PurchaseService;
+import com.ecommerce.service.UserService;
 
 @Controller
 public class AdminController {
@@ -227,7 +233,8 @@ public class AdminController {
 	        return "admin/purchases"; 
 	    }	  
 
-	  @RequestMapping(value = "/admindeletecat",  method = RequestMethod.GET)
+	  @SuppressWarnings("unused")
+	@RequestMapping(value = "/admindeletecat",  method = RequestMethod.GET)
 	    public String deleteCategory(ModelMap map,  @RequestParam(value="id", required=true) String id,
 	    		javax.servlet.http.HttpServletRequest request) 
 	    {
@@ -287,7 +294,8 @@ public class AdminController {
 	        return "redirect:admincategories";  
 	    }
 	  
-	  @RequestMapping(value = "/admindeleteproduct",  method = RequestMethod.GET)
+	  @SuppressWarnings({ "unused" })
+	@RequestMapping(value = "/admindeleteproduct",  method = RequestMethod.GET)
 	    public String deleteProduct(ModelMap map,  @RequestParam(value="id", required=true) String id,
 	    		javax.servlet.http.HttpServletRequest request) 
 	    {
@@ -330,7 +338,8 @@ public class AdminController {
 		  map.addAttribute("pageTitle", "ADMIN EDIT PRODUCT");
 	        return "admin/edit-product"; 
 	    }		  
-	  @RequestMapping(value = "/admineditproductaction", method = RequestMethod.POST)
+	  @SuppressWarnings("unused")
+	@RequestMapping(value = "/admineditproductaction", method = RequestMethod.POST)
 	    public String updateProduct(ModelMap map, javax.servlet.http.HttpServletRequest request,
 	    		 @RequestParam(value="id", required=true) String id,
 	    		 @RequestParam(value="name", required=true) String name,

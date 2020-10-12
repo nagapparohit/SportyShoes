@@ -9,8 +9,6 @@ import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.ecommerce.entity.PurchaseItem; 
 
 @Repository
@@ -50,7 +48,6 @@ public class PurchaseItemDAO {
 		return list;
 	}	
 	
-	@SuppressWarnings("unchecked")
 	public void updateItem(PurchaseItem item) {
 		//this.sessionFactory.getCurrentSession().save(item);
 		session = this.sessionFactory.getCurrentSession();
@@ -61,7 +58,6 @@ public class PurchaseItemDAO {
 	}
 	
 
-	@SuppressWarnings("unchecked")
 	public void deleteItem(long id) {
 		//Pending: Purchase total in purchase table should be updated after this
 		String sql = "";
@@ -77,7 +73,6 @@ public class PurchaseItemDAO {
 		
 	}
 
-	@SuppressWarnings("unchecked")
 	public void deleteAllItemsForPurchaseId(long purchaseId) {
 		String sql = "";
 		sql += "delete from PurchaseItem where purchase_id=:purchase_id";

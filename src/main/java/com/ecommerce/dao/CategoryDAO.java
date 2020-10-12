@@ -2,15 +2,13 @@ package com.ecommerce.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.Session;
-import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Repository;
 
 import com.ecommerce.entity.Category; 
 
@@ -41,7 +39,6 @@ public class CategoryDAO {
 	}
 	
 	
-	@SuppressWarnings("unchecked")
 	public void updateCategory(Category category) {
 		String sql = "";
 		if (category.getID() == 0) {
@@ -73,7 +70,6 @@ public class CategoryDAO {
 	}
 	
 
-	@SuppressWarnings("unchecked")
 	public void deleteCategory(long id) {
 		// mark all category_id of products with this category to zero before deleting the category row 
 		String sql = "";

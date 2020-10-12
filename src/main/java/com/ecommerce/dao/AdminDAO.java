@@ -2,15 +2,14 @@ package com.ecommerce.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.Session;
-import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Repository;
+
 import com.ecommerce.entity.Admin; 
 
 @Repository
@@ -60,7 +59,6 @@ public class AdminDAO {
 	}
 	
 	
-	@SuppressWarnings("unchecked")
 	public void updatePwd(Admin admin) {
 		
 		String sql = "update Admin set admin_pwd=:admin_pwd where ID=:id";

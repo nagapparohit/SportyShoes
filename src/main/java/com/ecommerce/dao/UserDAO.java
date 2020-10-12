@@ -3,17 +3,14 @@ package com.ecommerce.dao;
 import java.util.Calendar;
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.Session;
-import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Repository;
 
-import com.ecommerce.entity.Admin;
 import com.ecommerce.entity.User; 
 
 @Repository
@@ -76,7 +73,6 @@ public class UserDAO {
 		
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void updateUser(User user) {
 		String sql = "";
 		if (user.getID() == 0) {

@@ -8,17 +8,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ecommerce.entity.*;
-import com.ecommerce.service.*;
+import com.ecommerce.entity.Category;
+import com.ecommerce.entity.Product;
+import com.ecommerce.service.CategoryService;
+import com.ecommerce.service.ProductService;
  
 @Controller
 public class HomeController {
@@ -29,7 +26,8 @@ public class HomeController {
 	@Autowired
 	private ProductService productService; 
 	
-	  @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
+	  @SuppressWarnings("unused")
+	@RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
 	    public String home(ModelMap map,  javax.servlet.http.HttpServletRequest request) 
 	    {
 		    HttpSession session = request.getSession();

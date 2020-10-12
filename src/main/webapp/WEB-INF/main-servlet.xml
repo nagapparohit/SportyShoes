@@ -19,6 +19,11 @@
           <beans:property name="username" value="${jdbc.username}"></beans:property>
           <beans:property name="password" value="${jdbc.password}"></beans:property>
     </beans:bean>
+     
+    <beans:bean id="swagger2Config" 
+    	class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration">
+    
+    </beans:bean>
     
     <beans:bean id="sessionFactory"
         class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">

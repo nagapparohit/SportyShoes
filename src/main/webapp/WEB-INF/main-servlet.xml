@@ -17,7 +17,7 @@
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <beans:property name="location" value="/WEB-INF/jdbc.properties"></beans:property>
     </beans:bean>
-    
+   
     <beans:bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
          <beans:property name="driverClassName" value="${jdbc.driverClassName}"></beans:property>
@@ -73,10 +73,10 @@
     </beans:bean>
     
     
-     
-    <!--  <beans:bean id="swagger2Config" 
-    	class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration"> 
-    </beans:bean>
-      -->
+     <!-- 
+    <beans:bean id="swagger2Config" 
+    	class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration" > 
+    </beans:bean> -->
+      
     
 </beans:beans>
